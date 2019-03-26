@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --exec babel-node server/index",
-    "prettier": "prettier --write  './**/*.js'"
+    "prettier": "prettier --write  './**/*.js'",
+    "build:client": "webpack --mode=production",
+    "build": "npm run build:client && npm run build:server",
+    "build:server": "babel server/ --out-dir dist/ --copy-files"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +25,8 @@
     "@babel/preset-env": "^7.4.2",
     "babel-plugin-module-resolver": "^3.2.0",
     "nodemon": "^1.18.10",
-    "prettier": "^1.16.4"
+    "prettier": "^1.16.4",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   }
 }
