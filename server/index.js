@@ -1,4 +1,8 @@
 import Express from 'express'
+import Mongoose from 'mongoose'
+import config from './config'
+
+Mongoose.connect(config.databaseUrl, { useNewUrlParser: true })
 
 const app = Express()
 
