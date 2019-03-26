@@ -1,4 +1,3 @@
-h1 {
-    color: red;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
+@tailwind preflight;
+@tailwind components;
+@tailwind utilities;
