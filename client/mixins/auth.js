@@ -25,6 +25,8 @@ export default {
             localStorage.removeItem('auth')
             this.$store.commit(UNSET_AUTH)
 
+            this.flash('Successfully logged out.')
+
             this.$router.push('/')
         },
 
