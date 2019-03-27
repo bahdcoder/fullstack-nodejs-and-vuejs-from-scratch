@@ -24,16 +24,6 @@ export default async (req, res, next) => {
             )
         }
 
-        const existingReset = await PasswordReset.findOne({ email })
-
-        if (existingReset) {
-            throw new Yup.ValidationError(
-                'Pasword reset link already sent.',
-                req.body,
-                'email'
-            )
-        }
-
         req.user = user
 
         return next()
