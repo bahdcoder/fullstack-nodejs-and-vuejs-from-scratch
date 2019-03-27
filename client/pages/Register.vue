@@ -71,6 +71,19 @@
 
                             this.$router.push('/')
                         })
+                        .catch(error => {
+                            this.toggleLoading()
+
+                            // error.response.data => { email: 'This user already exists' }
+                            // => ['email']
+                            // this.errors.add({ field: 'email', msg: 'This user already exists' })
+                            Object.keys(error.response.data).forEach(field => {
+                                this.errors.add({
+                                    field,
+                                    msg: error.response.data[field]
+                                })
+                            })
+                        })
                 })
             },
 
