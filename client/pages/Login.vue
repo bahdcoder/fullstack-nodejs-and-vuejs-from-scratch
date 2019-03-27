@@ -34,7 +34,7 @@
 
 <script>
     import formMixin from '@client/mixins/form'
-    import { POST_LOGIN, SET_AUTH } from '@store/auth/actions'
+    import { POST_LOGIN } from '@store/auth/actions'
 
     export default {
         mixins: [formMixin],
@@ -58,10 +58,7 @@
                         .then(response => {
                             this.toggleLoading()
 
-                            localStorage.setItem('auth', JSON.stringify(response.data))
-                            this.$store.commit(SET_AUTH, response.data)
-
-                            this.$router.push('/')
+                            this.setAuth(response.data)
                         })
                         .catch(error => {
                             this.toggleLoading()

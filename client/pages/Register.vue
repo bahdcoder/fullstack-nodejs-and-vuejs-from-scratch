@@ -67,10 +67,7 @@
                         .then(response => {
                             this.toggleLoading()
 
-                            localStorage.setItem('auth', JSON.stringify(response.data))
-                            this.$store.commit(SET_AUTH, response.data)
-
-                            this.$router.push('/')
+                            this.setAuth(response.data)
                         })
                         .catch(error => {
                             this.toggleLoading()
