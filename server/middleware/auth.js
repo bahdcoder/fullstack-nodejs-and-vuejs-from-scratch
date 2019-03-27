@@ -6,7 +6,7 @@ export default async (req, res, next) => {
     try {
         const token = req.headers.access_token
 
-        const data  = jwt.verify(token, config.jwt)
+        const data  = jwt.verify(token, config.jwtSecret)
 
         const user = await User.findById(data.id)
 
@@ -18,6 +18,7 @@ export default async (req, res, next) => {
 
         return next()
     } catch (error) {
+        console.log('----------->', error)
         return res.status(400).json({
             message: 'Unauthenticated.'
         })

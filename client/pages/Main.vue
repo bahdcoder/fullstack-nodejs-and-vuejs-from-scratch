@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="w-full h-12 text-brown bg-gold-lightest flex items-center justify-center">
+        <div class="w-full h-12 text-brown bg-gold-lightest flex items-center justify-center" v-if="auth && !confirmed">
             Please confirm your email address. Didn't receive an email? <span @click="resendEmailConfirm" class="cursor-pointer ml-2 border-b-2 border-brown hover:text-brown-darkest">Click here to resend email.</span>
         </div>
         <div class="h-2 w-full bg-gold-light"></div>
