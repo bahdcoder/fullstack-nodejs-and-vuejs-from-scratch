@@ -42,7 +42,7 @@ UserSchema.methods.comparePasswords = function(plainPassword) {
     return Bcrypt.compareSync(plainPassword, this.password)
 }
 
-UserSchema.methods.forgotPassword = async function () {
+UserSchema.methods.forgotPassword = async function() {
     const token = randomstring.generate(72)
 
     await PasswordReset.create({

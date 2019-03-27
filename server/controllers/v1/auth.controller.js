@@ -36,11 +36,7 @@ const register = async (req, res) => {
 }
 
 const forgotPassword = async (req, res) => {
-    const { email } = req.body
-
-    const user  = await User.findOne({ email })
-
-    await user.forgotPassword()
+    await req.user.forgotPassword()
 
     return res.json({
         message: 'Password reset link sent.'
