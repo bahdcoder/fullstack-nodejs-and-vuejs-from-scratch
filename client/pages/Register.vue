@@ -29,9 +29,12 @@
                     :error="errors.first('password')"
                     placeholder="Enter your password"
                 />
-                <button @click="register" class="w-full mt-3 text-sm py-5 bg-emerald text-white rounded-sm focus:outline-none hover:bg-emerald-light">
-                    Sign Up
-                </button>
+                <btn
+                    label="Sign Up"
+                    :disabled="loading"
+                    :loading="loading"
+                    @click="register"
+                />
             </div>
         </div>
     </div>
@@ -42,6 +45,7 @@
 
     export default {
         data: () => ({
+            loading: false,
             model: {
                 name: '',
                 email: '',
@@ -56,8 +60,19 @@
                         return
                     }
 
+                    this.toggleLoading()
+
                     this.$store.dispatch(POST_REGISTER, this.model)
+                        .then(() => {
+                            this.toggleLoading()
+
+                            this.$router.push('/')
+                        })
                 })
+            },
+
+            toggleLoading() {
+                this.loading = !this.loading
             }
         }
     }
