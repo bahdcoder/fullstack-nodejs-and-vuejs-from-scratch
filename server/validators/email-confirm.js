@@ -7,6 +7,8 @@ const EmailConfirmSchema = Yup.object().shape({
 })
 
 export default async (req, res, next) => {
+    const { token } = req.body
+
     try {
         await EmailConfirmSchema.validate(req.body)
 
