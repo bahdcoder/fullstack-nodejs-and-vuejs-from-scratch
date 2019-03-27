@@ -1,5 +1,8 @@
 <template>
     <div>
+        <div class="w-full h-12 text-brown bg-gold-lightest flex items-center justify-center">
+            Please confirm your email address. Didn't receive an email? <span @click="resendEmailConfirm" class="cursor-pointer ml-2 border-b-2 border-brown hover:text-brown-darkest">Click here to resend email.</span>
+        </div>
         <div class="h-2 w-full bg-gold-light"></div>
         <div class="py-5 mx-10 flex justify-between items-center">
             <router-link to="/" class="no-underline text-gold">Mevn</router-link>
