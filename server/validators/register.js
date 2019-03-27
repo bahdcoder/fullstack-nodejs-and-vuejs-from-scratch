@@ -26,6 +26,8 @@ export default async (req, res, next) => {
                 'email'
             )
         }
+
+        return next()
     } catch (error) {
         return res.status(422).json({
             [error.path]: error.message
