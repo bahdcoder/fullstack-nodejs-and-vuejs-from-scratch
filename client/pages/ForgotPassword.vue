@@ -1,7 +1,7 @@
 <template>
     <div class="container my-16 w-full mx-auto">
         <div class="max-w-sm mx-auto">
-            <h2 class="text-center text-gold">Login</h2>
+            <h2 class="text-center text-gold">Forgot Password</h2>
 
             <div class="w-full bg-white shadow-md mt-5 rounded-sm p-12">
                 <text-input
@@ -12,23 +12,11 @@
                     placeholder="Enter your email"
                     :error="errors.first('email')"
                 />
-                <text-input
-                    type="password"
-                    name="password"
-                    :value="model.password"
-                    v-model="model.password"
-                    v-validate="'required|min:6'"
-                    :error="errors.first('password')"
-                    placeholder="Enter your password"
-                />
-                <div class="my-8 flex justify-center items-center">
-                    <router-link to="/auth/passwords/email" class="no-underline text-brown">Forgot Password ?</router-link>
-                </div>
                 <btn
-                    label="Sign in"
+                    label="Send Password Reset Link"
                     :disabled="loading"
                     :loading="loading"
-                    @click="login"
+                    @click="forgotPassword"
                 />
             </div>
         </div>
@@ -37,19 +25,18 @@
 
 <script>
     import formMixin from '@client/mixins/form'
-    import { POST_LOGIN } from '@store/auth/actions'
+    import { POST_FORGOT_PASSWORD } from '@store/auth/actions'
 
     export default {
         mixins: [formMixin],
         data: () => ({
             model: {
-                email: '',
-                password: ''
+                email: ''
             }
         }),
 
         methods: {
-            login() {
+            forgotPassword() {
                 this.$validator.validate().then(isValid => {
                     if (! isValid) {
                         return
@@ -57,11 +44,11 @@
 
                     this.toggleLoading()
 
-                    this.$store.dispatch(POST_LOGIN, this.model)
+                    this.$store.dispatch(POST_FORGOT_PASSWORD, this.model)
                         .then(response => {
                             this.toggleLoading()
 
-                            this.setAuth(response.data)
+                            this.$router.push('/')
                         })
                         .catch(error => {
                             this.toggleLoading()
