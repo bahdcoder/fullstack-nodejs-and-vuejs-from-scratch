@@ -2,6 +2,7 @@ import { Router } from 'express'
 import loginValidator from '@validators/login'
 import registerValidator from '@validators/register'
 import authController from '@controllers/v1/auth.controller'
+import emailConfirmValidator from '@validators/email-confirm'
 import resetPasswordValidator from '@validators/reset-password'
 import forgotPasswordValidator from '@validators/forgot-password'
 
@@ -18,5 +19,7 @@ authRouter.post(
 )
 
 authRouter.post('/passwords/reset', resetPasswordValidator, authController.resetPassword)
+
+authRouter.post('/emails/confirm', emailConfirmValidator, authController.confirmEmail)
 
 export default authRouter
