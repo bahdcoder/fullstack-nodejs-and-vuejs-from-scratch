@@ -67,6 +67,8 @@
                         .then(response => {
                             this.toggleLoading()
 
+                            this.flash('Succesfully registered.')
+
                             this.setAuth(response.data)
                         })
                         .catch(error => {

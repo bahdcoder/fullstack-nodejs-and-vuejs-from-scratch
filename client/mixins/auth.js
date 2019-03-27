@@ -33,9 +33,13 @@ export default {
         resendEmailConfirm() {
             this.$store.dispatch(POST_RESENT_EMAIL_CONFIRM)
                 .then(() => {
+                    this.flash('Successfully resent confirm email.')
+
                     this.$router.push('/')
                 })
                 .catch(() => {
+                    this.flash('Error resending confirm email.')
+                    
                     this.$router.push('/')
                 })
         }

@@ -52,6 +52,8 @@
                         .then(response => {
                             this.toggleLoading()
 
+                            this.flash('Password has been reset.')
+
                             this.$router.push('/')
                         })
                         .catch(error => {

@@ -12,9 +12,10 @@
             this.$store.dispatch(POST_CONFIRM_EMAIL, {
                 token: this.$route.params.token
             }).then(response => {
+                this.flash('Email confirmed.')
                 this.setAuth(response.data)
             }).catch(() => {
-                // TODO: flash a message to the user
+                this.flash('Error confirming email.', 'error')
                 this.$router.push('/')
             })
         }

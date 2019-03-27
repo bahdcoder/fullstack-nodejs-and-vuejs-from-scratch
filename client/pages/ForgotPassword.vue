@@ -48,6 +48,8 @@
                         .then(response => {
                             this.toggleLoading()
 
+                            this.flash('Password reset link sent. It expires in 5 minutes')
+
                             this.$router.push('/')
                         })
                         .catch(error => {
