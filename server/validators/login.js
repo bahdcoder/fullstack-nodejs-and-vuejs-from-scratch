@@ -10,7 +10,7 @@ const LoginSchema = Yup.object().shape({
 })
 
 export default (req, res, next) =>
-    LoginSchema.validate()
+    LoginSchema.validate(req.body)
         .then(() => next())
         .catch(error =>
             res.status(422).json({
