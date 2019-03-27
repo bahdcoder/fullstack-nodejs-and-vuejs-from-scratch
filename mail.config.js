@@ -1,5 +1,5 @@
 module.exports = {
-  /*
+    /*
   |--------------------------------------------------------------------------
   | Connection
   |--------------------------------------------------------------------------
@@ -8,9 +8,9 @@ module.exports = {
   | define a driver too.
   |
   */
-  connection: process.env.MAIL_CONNECTION || 'smtp',
+    connection: process.env.MAIL_CONNECTION || 'smtp',
 
-  /*
+    /*
   |--------------------------------------------------------------------------
   | Views
   |--------------------------------------------------------------------------
@@ -19,9 +19,9 @@ module.exports = {
   | If it's not defined, /mails is used as default.
   |
   */
-  views: 'server/mails',
+    views: 'server/mails',
 
-  /*
+    /*
   |--------------------------------------------------------------------------
   | View engine
   |--------------------------------------------------------------------------
@@ -30,9 +30,9 @@ module.exports = {
   | handlebars, edge
   |
   */
-  viewEngine: 'handlebars',
+    viewEngine: 'handlebars',
 
-  /*
+    /*
   |--------------------------------------------------------------------------
   | SMTP
   |--------------------------------------------------------------------------
@@ -40,22 +40,22 @@ module.exports = {
   | Here we define configuration for sending emails via SMTP.
   |
   */
-  smtp: {
-    driver: 'smtp',
-    pool: true,
-    port: process.env.SMTP_PORT || 2525,
-    host: process.env.SMTP_HOST || 'smtp.mailtrap.io',
-    secure: false,
-    auth: {
-      user: process.env.MAIL_USERNAME,
-      pass: process.env.MAIL_PASSWORD
+    smtp: {
+        driver: 'smtp',
+        pool: true,
+        port: process.env.SMTP_PORT || 2525,
+        host: process.env.SMTP_HOST || 'smtp.mailtrap.io',
+        secure: false,
+        auth: {
+            user: process.env.MAIL_USERNAME,
+            pass: process.env.MAIL_PASSWORD
+        },
+        maxConnections: 5,
+        maxMessages: 100,
+        rateLimit: 10
     },
-    maxConnections: 5,
-    maxMessages: 100,
-    rateLimit: 10
-  },
 
-  /*
+    /*
   |--------------------------------------------------------------------------
   | SparkPost
   |--------------------------------------------------------------------------
@@ -71,14 +71,14 @@ module.exports = {
   | }
   |
   */
-  sparkpost: {
-    driver: 'sparkpost',
-    // endpoint: 'https://api.eu.sparkpost.com/api/v1',
-    apiKey: process.env.SPARKPOST_API_KEY,
-    extras: {}
-  },
+    sparkpost: {
+        driver: 'sparkpost',
+        // endpoint: 'https://api.eu.sparkpost.com/api/v1',
+        apiKey: process.env.SPARKPOST_API_KEY,
+        extras: {}
+    },
 
-  /*
+    /*
   |--------------------------------------------------------------------------
   | Mailgun
   |--------------------------------------------------------------------------
@@ -95,14 +95,14 @@ module.exports = {
   | }
   |
   */
-  mailgun: {
-    driver: 'mailgun',
-    domain: process.env.MAILGUN_DOMAIN,
-    apiKey: process.env.MAILGUN_API_KEY,
-    extras: {}
-  },
+    mailgun: {
+        driver: 'mailgun',
+        domain: process.env.MAILGUN_DOMAIN,
+        apiKey: process.env.MAILGUN_API_KEY,
+        extras: {}
+    },
 
-  /*
+    /*
   |--------------------------------------------------------------------------
   | Ethereal
   |--------------------------------------------------------------------------
@@ -113,7 +113,7 @@ module.exports = {
   | https://ethereal.email
   |
   */
-  ethereal: {
-    driver: 'ethereal'
-  }
+    ethereal: {
+        driver: 'ethereal'
+    }
 }

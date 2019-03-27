@@ -3,8 +3,12 @@ import User from '@models/User'
 
 const RegisterSchema = Yup.object().shape({
     name: Yup.string().required(),
-    email: Yup.string().email().required(),
-    password: Yup.string().min(6).required()
+    email: Yup.string()
+        .email()
+        .required(),
+    password: Yup.string()
+        .min(6)
+        .required()
 })
 
 export default async (req, res, next) => {

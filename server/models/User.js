@@ -15,14 +15,14 @@ const UserSchema = new mongoose.Schema({
     emailConfirmCode: String
 })
 
-UserSchema.pre('save', function () {
+UserSchema.pre('save', function() {
     this.password = Bcrypt.hashSync(this.password)
     this.emailConfirmCode = randomstring.generate(72)
 
     this.createdAt = new Date()
 })
 
-UserSchema.post('save', async function () {
+UserSchema.post('save', async function() {
     await new Mail('confirm-account')
         .to(this.email, this.name)
         .subject('Please confirm your account')
@@ -33,8 +33,12 @@ UserSchema.post('save', async function () {
         .send()
 })
 
-UserSchema.methods.generateToken = function () {
+UserSchema.methods.generateToken = function() {
     return jwt.sign({ id: this._id }, config.jwtSecret)
+}
+
+UserSchema.methods.comparePasswords = function(plainPassword) {
+    return Bcrypt.compareSync(plainPassword, this.password)
 }
 
 export default mongoose.model('User', UserSchema)

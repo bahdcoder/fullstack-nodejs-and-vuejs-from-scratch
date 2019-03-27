@@ -19,5 +19,5 @@ const app = new Vue({
     el: '#app',
     router,
     store,
-    render: h => h(Main) 
+    render: h => h(Main)
 })

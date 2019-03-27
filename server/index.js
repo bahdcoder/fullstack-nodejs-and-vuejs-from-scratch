@@ -17,10 +17,12 @@ app.use(BodyParser.json())
 
 const compiler = Webpack(WebpackConfig)
 
-app.use(WebpackDevMiddleware(compiler, {
-    hot: true,
-    publicPath: WebpackConfig.output.publicPath
-}))
+app.use(
+    WebpackDevMiddleware(compiler, {
+        hot: true,
+        publicPath: WebpackConfig.output.publicPath
+    })
+)
 
 app.use(WebpackHotMiddleware(compiler))
 
