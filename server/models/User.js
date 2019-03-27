@@ -24,18 +24,22 @@ UserSchema.pre('save', function() {
 })
 
 UserSchema.post('save', async function() {
-    await new Mail('confirm-account')
-        .to(this.email, this.name)
-        .subject('Please confirm your account')
-        .data({
-            name: this.name,
-            url: `${config.url}/auth/emails/confirm/${this.emailConfirmCode}`
-        })
-        .send()
+    await this.sendEmailConfirmation()
 })
 
 UserSchema.methods.generateToken = function() {
     return jwt.sign({ id: this._id }, config.jwtSecret)
+}
+
+UserSchema.methods.sendEmailConfirmation = async function () {
+    await new Mail('confirm-account')
+    .to(this.email, this.name)
+    .subject('Please confirm your account')
+    .data({
+        name: this.name,
+        url: `${config.url}/auth/emails/confirm/${this.emailConfirmCode}`
+    })
+    .send()
 }
 
 UserSchema.methods.comparePasswords = function(plainPassword) {
