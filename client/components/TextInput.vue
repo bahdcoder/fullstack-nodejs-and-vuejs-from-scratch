@@ -1,7 +1,7 @@
 <template>
     <div class="mb-3">
         <input
-            type="text"
+            :type="type"
             :name="name"
             :value="value"
             @focus="$emit('focus')"

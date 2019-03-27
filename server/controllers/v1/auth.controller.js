@@ -11,7 +11,9 @@ const register = async (req, res) => {
         password
     })
 
-    return res.status(201).json({ user })
+    const token = user.generateToken()
+
+    return res.status(201).json({ user, token })
 }
 
 export default {

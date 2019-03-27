@@ -1,5 +1,6 @@
 import config from '@config'
 import Bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 import mongoose from 'mongoose'
 import Mail from '@fullstackjs/mail'
 import randomstring from 'randomstring'
@@ -31,5 +32,9 @@ UserSchema.post('save', async function () {
         })
         .send()
 })
+
+UserSchema.methods.generateToken = function () {
+    return jwt.sign({ id: this._id }, config.jwtSecret)
+}
 
 export default mongoose.model('User', UserSchema)
