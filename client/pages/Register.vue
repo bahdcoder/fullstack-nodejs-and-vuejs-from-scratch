@@ -41,7 +41,7 @@
 </template>
 
 <script>
-    import { POST_REGISTER } from '@store/auth/actions'
+    import { POST_REGISTER, SET_AUTH } from '@store/auth/actions'
 
     export default {
         data: () => ({
@@ -63,8 +63,11 @@
                     this.toggleLoading()
 
                     this.$store.dispatch(POST_REGISTER, this.model)
-                        .then(() => {
+                        .then(response => {
                             this.toggleLoading()
+
+                            localStorage.setItem('auth', JSON.stringify(response.data))
+                            this.$store.commit(SET_AUTH, response.data)
 
                             this.$router.push('/')
                         })
